@@ -5,7 +5,6 @@ import io.quarkus.runtime.annotations.RegisterForReflection;
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
 import jakarta.enterprise.context.Dependent;
-import jakarta.transaction.Transactional;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.QueryParam;
@@ -13,13 +12,12 @@ import jakarta.ws.rs.QueryParam;
 @Unremovable
 @RegisterForReflection
 @Dependent
-public class SubResource {
+public class BarResource {
 
     @PathParam("id")
     String id;
 
     @GET
-    @Transactional
     public String hi(@QueryParam("bar") Integer bar) {
         return "Hello %s %s".formatted(id, bar);
     }

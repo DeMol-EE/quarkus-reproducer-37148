@@ -4,22 +4,20 @@ import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.enterprise.inject.spi.CDI;
-import jakarta.transaction.Transactional;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.container.ResourceContext;
 import jakarta.ws.rs.core.Context;
 
 @Path("hello")
-@Transactional
 @RequestScoped
-public class GreetingResource {
+public class FooResource {
 
     @Path("{id}")
-    public SubResource subResource(
+    public BarResource subResource(
             @Context ResourceContext resourceContext
     ) {
         return resourceContext.initResource(CDI.current()
-                .select(SubResource.class)
+                .select(BarResource.class)
                 .get());
     }
 
